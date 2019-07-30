@@ -1,2 +1,2 @@
-# React Table
+# React Redux Boilerplate
 
