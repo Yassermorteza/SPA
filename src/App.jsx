@@ -1,21 +1,41 @@
-import React, { Component } from 'react';
-import Col from 'antd/lib/col';
-import Row from 'antd/lib/row';
-import 'antd/dist/antd.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Spinner from "react-spinkit";
 
-class App extends Component {
-	render(){
-		return (
-				<div>
-					<Row>
-					  <Col span={18} push={6}>col-18 col-push-6</Col>
-					  <Col span={6} pull={18}>col-6 col-pull-18</Col>
-					</Row>
-				</div>
-			)
-	};
-};
+import "./styles/app.scss";
+import ErrorBoundary from './ErrorBoundary';
+
+
+export class App extends Component {
+
+  state = {
+    loading: true,
+  }
+
+  componentDidMount() {
+
+    this.setState({
+      loading: false
+    })
+  }
+
+  render() {
+    const { loading } = this.state;
+
+    if (loading) {
+      return (
+        <Spinner name="ball-spin-fade-loader" color="#00ffff" className="spinner" />
+      );
+    }
+
+    return (
+      <ErrorBoundary>
+        <Router>
+          <div>React Redux Boilerplate</div>
+        </Router>
+      </ErrorBoundary>
+    );
+  }
+}
 
 export default App;
-
-
